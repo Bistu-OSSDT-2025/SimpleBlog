@@ -41,6 +41,7 @@ const closeMenu = () => {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
 }
 
 .nav-container {
