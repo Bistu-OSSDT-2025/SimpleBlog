@@ -49,57 +49,18 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Sidebar from '../components/Sidebar.vue'
+import { getPost, getComments, addComment } from '../api.js'
 
 const route = useRoute()
 const post = ref({})
 const comments = ref([])
 const newComment = ref('')
 
-const mockPosts = [
-  {
-    id: 1,
-    title: 'Vue 3 Composition API 详解',
-    content: `<p>深入了解 Vue 3 的 Composition API，学习如何使用 setup() 函数、reactive 和 ref 等核心概念。</p><p>本文将通过示例演示如何在实际项目中应用 Composition API。</p>`,
-    date: '2025-07-01',
-    category: 'Vue.js',
-    image: 'https://dummyimage.com/800x400/007bff/ffffff?text=Vue3',
-  },
-  {
-    id: 2,
-    title: 'JavaScript ES2024 新特性',
-    content: `<p>ES2024 带来了许多令人兴奋的新功能，包括新的数组方法、模式匹配等。</p><p>让我们一起探索这些新特性如何提高开发效率。</p>`,
-    date: '2025-06-28',
-    category: 'JavaScript',
-    image: 'https://dummyimage.com/800x400/f39c12/ffffff?text=JS',
-  },
-]
-
-const mockComments = [
-  {
-    id: 1,
-    author: '张三',
-    text: '非常有价值的文章！',
-    date: '2025-07-02',
-    avatar: 'https://dummyimage.com/40x40/007bff/ffffff?text=张',
-  },
-  {
-    id: 2,
-    author: '李四',
-    text: '请问有没有更多的示例代码？',
-    date: '2025-07-02',
-    avatar: 'https://dummyimage.com/40x40/28a745/ffffff?text=李',
-  },
-]
-
-onMounted(() => {
-  loadPost()
-})
-
-function loadPost() {
+onMounted(async () => {
   const id = parseInt(route.params.id)
-  post.value = mockPosts.find((p) => p.id === id) || {}
-  comments.value = mockComments
-}
+  post.value = await getPost(id)
+  comments.value = await getComments(id)
+})
 
 function formatDate(dateString) {
   const date = new Date(dateString)
@@ -112,12 +73,12 @@ function formatDate(dateString) {
 
 function submitComment() {
   if (newComment.value.trim()) {
-    comments.value.push({
-      id: comments.value.length + 1,
+    addComment(post.value.id, {
       author: '匿名',
       text: newComment.value,
-      date: new Date().toISOString(),
       avatar: 'https://dummyimage.com/40x40/6c757d/ffffff?text=?',
+    }).then((comment) => {
+      comments.value.push(comment)
     })
     newComment.value = ''
   }

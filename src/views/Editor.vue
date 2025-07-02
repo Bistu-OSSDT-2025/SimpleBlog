@@ -13,6 +13,14 @@
           class="category-input"
         />
       </div>
+      <div class="form-group">
+        <input
+          v-model="postImage"
+          type="text"
+          placeholder="封面图片 URL (可选)"
+          class="image-input"
+        />
+      </div>
       <div id="vditor" class="editor-container"></div>
       <button @click="publish" class="publish-btn">发布文章</button>
     </div>
@@ -22,18 +30,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { addPost } from '../api.js'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 
 const postTitle = ref('')
 const postCategory = ref('')
+const postImage = ref('')
 const editor = ref(null)
 const router = useRouter()
-
-// 新增：远程发布占位函数
-const sendPostToServer = async (data) => {
-  // TODO: 实现远程发布逻辑
-}
 
 onMounted(() => {
   editor.value = new Vditor('vditor', {
@@ -54,13 +59,13 @@ const publish = async () => {
   }
   const postData = {
     title: postTitle.value,
-    excerpt: content.substr(0, 100),
-    date: new Date().toISOString(),
+    excerpt: content.replace(/<[^>]*>/g, '').substring(0, 100) + '...',
     category: postCategory.value || '未分类',
+    image: postImage.value,
     content,
   }
-  // 调用远程发布接口
-  await sendPostToServer(postData)
+  // 调用本地存储接口保存文章
+  await addPost(postData)
   alert('发布成功')
   router.push('/')
 }
@@ -74,7 +79,8 @@ const publish = async () => {
 }
 
 .title-input,
-.category-input {
+.category-input,
+.image-input {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
