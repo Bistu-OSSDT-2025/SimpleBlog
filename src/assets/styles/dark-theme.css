@@ -1,19 +1,427 @@
-:root {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-  --header-bg: #1e1e1e;
-  --link-color: #bb86fc;
+/* ========================================
+   暗黑模式主题样式
+   ======================================== */
+
+/* ===== 根元素暗黑模式变量 ===== */
+:root.dark {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #888888;
+  --border-color: #404040;
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --accent-blue: #4dabf7;
+  --accent-blue-hover: #339af0;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+/* ===== 全局暗黑模式基础样式 ===== */
+body.dark-mode {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
 }
 
-header {
-  background-color: var(--header-bg);
+/* ===== 卡片和容器样式 ===== */
+body.dark-mode .post-card {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 12px var(--shadow-dark) !important;
 }
 
-a {
-  color: var(--link-color);
+body.dark-mode .post-card:hover {
+  background-color: var(--bg-tertiary) !important;
+  box-shadow: 0 8px 24px var(--shadow-dark) !important;
+}
+
+body.dark-mode .post-title {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .post-excerpt {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .post-meta .post-date {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .post-footer {
+  color: var(--text-muted) !important;
+}
+
+/* ===== 侧边栏暗黑模式 ===== */
+body.dark-mode .sidebar {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .sidebar-section {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .sidebar-section h3 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .search-box input {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .popular-post {
+  border-bottom-color: var(--border-color) !important;
+}
+
+body.dark-mode .popular-post:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+body.dark-mode .popular-post h4 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .popular-post-meta {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .category-item {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .category-item:hover {
+  color: var(--accent-blue) !important;
+}
+
+body.dark-mode .category-count {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .tag {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .tag:hover {
+  background-color: var(--accent-blue) !important;
+  color: white !important;
+}
+
+body.dark-mode .comment-text {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .comment-meta {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .archive-item {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .archive-item:hover {
+  color: var(--accent-blue) !important;
+}
+
+body.dark-mode .archive-count {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-muted) !important;
+}
+
+/* ===== 导航栏暗黑模式 ===== */
+body.dark-mode .navbar {
+  background-color: var(--bg-secondary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .nav-brand {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .nav-links a {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.router-link-active {
+  color: var(--accent-blue) !important;
+}
+
+/* ===== 页脚暗黑模式 ===== */
+body.dark-mode .footer {
+  background-color: var(--bg-secondary) !important;
+  border-top: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ===== 分页按钮暗黑模式 ===== */
+body.dark-mode .page-btn {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode .page-btn:hover,
+body.dark-mode .page-btn.active {
+  background-color: var(--accent-blue) !important;
+  color: white !important;
+  border-color: var(--accent-blue) !important;
+}
+
+/* ===== 文章详情页暗黑模式 ===== */
+body.dark-mode .article .post-title {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .article .post-meta {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .article .post-content {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .article .post-content h1,
+body.dark-mode .article .post-content h2,
+body.dark-mode .article .post-content h3,
+body.dark-mode .article .post-content h4,
+body.dark-mode .article .post-content h5,
+body.dark-mode .article .post-content h6 {
+  color: var(--text-primary) !important;
+}
+
+/* ===== 评论区暗黑模式 ===== */
+body.dark-mode .comments h2 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .comment-item {
+  border-bottom-color: var(--border-color) !important;
+}
+
+body.dark-mode .comment-body .comment-text {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .comment-form textarea {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode .comment-form textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .comment-form button {
+  background-color: var(--accent-blue) !important;
+}
+
+body.dark-mode .comment-form button:hover {
+  background-color: var(--accent-blue-hover) !important;
+}
+
+/* ===== 编辑器页面暗黑模式 ===== */
+body.dark-mode .editor-page .container h2 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .title-input,
+body.dark-mode .category-input,
+body.dark-mode .image-input {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode .title-input::placeholder,
+body.dark-mode .category-input::placeholder,
+body.dark-mode .image-input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .publish-btn {
+  background-color: var(--accent-blue) !important;
+}
+
+body.dark-mode .publish-btn:hover {
+  background-color: var(--accent-blue-hover) !important;
+}
+
+/* ===== Hero区域暗黑模式 ===== */
+body.dark-mode .hero {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%) !important;
+}
+
+/* ===== 关于页面暗色模式 ===== */
+body.dark-mode .about .hero {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%) !important;
+}
+
+body.dark-mode .about-content h2 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .about-content p {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .about-content ul {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-mode .about-content a {
+  color: var(--accent-blue) !important;
+}
+
+body.dark-mode .about-content a:hover {
+  color: var(--accent-blue-hover) !important;
+}
+
+/* ===== 移动端导航栏暗色模式 ===== */
+@media (max-width: 768px) {
+  body.dark-mode .nav-menu {
+    background-color: var(--bg-secondary) !important;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  body.dark-mode .bar {
+    background-color: var(--text-primary) !important;
+  }
+}
+
+/* ===== 滚动条暗色模式 ===== */
+body.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
+}
+
+/* ===== 选择文本暗色模式 ===== */
+body.dark-mode ::selection {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+/* ===== 表单元素通用暗色模式 ===== */
+body.dark-mode input[type='text'],
+body.dark-mode input[type='email'],
+body.dark-mode input[type='password'],
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode input[type='text']:focus,
+body.dark-mode input[type='email']:focus,
+body.dark-mode input[type='password']:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 2px rgba(77, 171, 247, 0.2) !important;
+}
+
+/* ===== 按钮通用暗色模式 ===== */
+body.dark-mode button:not(.theme-toggle):not(.search-btn) {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode button:not(.theme-toggle):not(.search-btn):hover {
+  background-color: var(--border-color) !important;
+}
+
+/* ===== 代码块暗色模式 ===== */
+body.dark-mode pre,
+body.dark-mode code {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* ===== 引用块暗色模式 ===== */
+body.dark-mode blockquote {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+  border-left: 4px solid var(--accent-blue) !important;
+}
+
+/* ===== 表格暗色模式 ===== */
+body.dark-mode table {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode th,
+body.dark-mode td {
+  border-color: var(--border-color) !important;
+}
+
+body.dark-mode th {
+  background-color: var(--bg-tertiary) !important;
+}
+
+body.dark-mode tr:nth-child(even) {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* ===== 图片暗色模式优化 ===== */
+body.dark-mode img {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+body.dark-mode img:hover {
+  opacity: 1;
+}
+
+/* ===== 链接暗色模式 ===== */
+body.dark-mode a:not(.nav-link):not(.router-link-active) {
+  color: var(--accent-blue) !important;
+}
+
+body.dark-mode a:not(.nav-link):not(.router-link-active):hover {
+  color: var(--accent-blue-hover) !important;
+}
+
+/* ===== 主题切换按钮优化 ===== */
+body.dark-mode .theme-toggle {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .theme-toggle:hover {
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-color) 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ===== 平滑过渡动画 ===== */
+body.dark-mode * {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease !important;
 }

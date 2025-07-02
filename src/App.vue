@@ -11,9 +11,9 @@ onMounted(() => {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   darkMode.value = savedMode !== null ? savedMode === 'true' : prefersDark
   applyTheme(darkMode.value)
-  
+
   // 监听系统主题变化
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     if (localStorage.getItem('darkMode') === null) {
       darkMode.value = e.matches
       applyTheme(darkMode.value)
@@ -38,16 +38,16 @@ const toggleTheme = () => {
     <Navbar />
     <main class="main-content">
       <!-- 固定在右上角的主题切换按钮 -->
-      <button 
-        class="theme-toggle" 
-        @click="toggleTheme" 
+      <button
+        class="theme-toggle"
+        @click="toggleTheme"
         :aria-label="darkMode ? '切换到亮色模式' : '切换到暗色模式'"
         :title="darkMode ? '切换到亮色模式' : '切换到暗色模式'"
       >
         <span class="theme-icon">{{ darkMode ? '☀️' : '🌙' }}</span>
         <span class="theme-text">{{ darkMode ? '日间模式' : '夜间模式' }}</span>
       </button>
-      
+
       <router-view />
     </main>
     <Footer />
@@ -66,7 +66,7 @@ const toggleTheme = () => {
 html,
 body,
 body *:not(.theme-toggle, .theme-toggle *, .no-transition, .no-transition *) {
-  transition: 
+  transition:
     background-color 0.3s ease,
     color 0.3s ease,
     border-color 0.3s ease,
@@ -108,6 +108,10 @@ body.dark-mode .main-content {
   display: flex;
   flex-direction: column;
   position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: none;
+  width: 100%;
+  font-weight: normal;
 }
 
 /* ===== 主要内容区域 ===== */
@@ -116,6 +120,7 @@ body.dark-mode .main-content {
   width: 100%;
   padding: 20px;
   background-color: inherit;
+  min-height: calc(100vh - 140px);
 }
 
 /* ===== 主题切换按钮 ===== */
@@ -171,7 +176,7 @@ body.dark-mode .theme-toggle:hover {
     padding: 8px 12px;
     font-size: 0.9rem;
   }
-  
+
   .theme-text {
     display: none;
   }

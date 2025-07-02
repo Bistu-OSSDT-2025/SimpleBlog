@@ -13,17 +13,13 @@
           <h2>我们的使命</h2>
           <p>我们相信知识的力量，通过技术分享与实践案例，让更多人能够高效学习并应用于项目中。</p>
 
-          <h2>作者介绍</h2>
-          <p>
-            我是张三，一名前端开发者，拥有 5 年 Vue.js、React 等框架开发经验，热衷于分享和交流。
-          </p>
-
           <h2>联系我们</h2>
           <p>如有疑问或合作意向，请通过以下方式联系：</p>
           <ul>
             <li>Email: contact@simpleblog.com</li>
-            <li>GitHub: <a href="#" target="_blank">github.com/simpleblog</a></li>
-            <li>Twitter: <a href="#" target="_blank">@simpleblog</a></li>
+            <li>
+              GitHub: <a href="#" target="_blank">https://github.com/Bistu-OSSDT-2025/SimpleBlog</a>
+            </li>
           </ul>
         </main>
         <aside class="sidebar">
