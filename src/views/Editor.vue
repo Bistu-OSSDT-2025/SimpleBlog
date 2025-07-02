@@ -30,6 +30,11 @@ const postCategory = ref('')
 const editor = ref(null)
 const router = useRouter()
 
+// 新增：远程发布占位函数
+const sendPostToServer = async (data) => {
+  // TODO: 实现远程发布逻辑
+}
+
 onMounted(() => {
   editor.value = new Vditor('vditor', {
     height: 500,
@@ -41,25 +46,21 @@ onMounted(() => {
   })
 })
 
-const publish = () => {
+const publish = async () => {
   const content = editor.value.getValue()
   if (!postTitle.value.trim() || !content.trim()) {
     alert('标题和内容不能为空')
     return
   }
-  const posts = JSON.parse(localStorage.getItem('posts') || '[]')
-  posts.unshift({
-    id: Date.now(),
+  const postData = {
     title: postTitle.value,
     excerpt: content.substr(0, 100),
     date: new Date().toISOString(),
     category: postCategory.value || '未分类',
-    image: '',
-    readTime: Math.ceil(content.length / 200),
-    views: 0,
     content,
-  })
-  localStorage.setItem('posts', JSON.stringify(posts))
+  }
+  // 调用远程发布接口
+  await sendPostToServer(postData)
   alert('发布成功')
   router.push('/')
 }
@@ -67,7 +68,7 @@ const publish = () => {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
