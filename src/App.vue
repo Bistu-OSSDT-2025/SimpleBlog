@@ -3,29 +3,29 @@ import { ref, onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 
-// 主题状态管理
 const darkMode = ref(false)
 
-// 初始化时检查本地存储和系统偏好
 onMounted(() => {
-  // 从localStorage读取用户偏好
+  // 初始化主题检查
   const savedMode = localStorage.getItem('darkMode')
-  if (savedMode !== null) {
-    darkMode.value = savedMode === 'true'
-  } else {
-    // 如果没有设置过，则根据系统偏好设置
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    darkMode.value = prefersDark
-  }
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  darkMode.value = savedMode !== null ? savedMode === 'true' : prefersDark
   applyTheme(darkMode.value)
+  
+  // 监听系统主题变化
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (localStorage.getItem('darkMode') === null) {
+      darkMode.value = e.matches
+      applyTheme(darkMode.value)
+    }
+  })
 })
 
-// 应用主题样式
 const applyTheme = (isDark) => {
   document.documentElement.classList.toggle('dark', isDark)
+  document.body.classList.toggle('dark-mode', isDark)
 }
 
-// 切换主题
 const toggleTheme = () => {
   darkMode.value = !darkMode.value
   localStorage.setItem('darkMode', darkMode.value)
@@ -34,12 +34,17 @@ const toggleTheme = () => {
 </script>
 
 <template>
-  <div id="app" :class="{ 'dark-mode': darkMode }">
+  <div id="app">
     <Navbar />
     <main class="main-content">
-      <!-- 浮动切换按钮 -->
-      <button class="theme-toggle" @click="toggleTheme" :title="darkMode ? '切换到亮色模式' : '切换到暗色模式'">
-        {{ darkMode ? '☀️' : '🌙' }}
+      <!-- 固定在右上角的主题切换按钮 -->
+      <button 
+        class="theme-toggle" 
+        @click="toggleTheme" 
+        :aria-label="darkMode ? '切换到亮色模式' : '切换到暗色模式'"
+        :title="darkMode ? '切换到亮色模式' : '切换到暗色模式'"
+      >
+        <span class="theme-icon">{{ darkMode ? '☀️' : '🌙' }}</span>
         <span class="theme-text">{{ darkMode ? '日间模式' : '夜间模式' }}</span>
       </button>
       
@@ -50,82 +55,134 @@ const toggleTheme = () => {
 </template>
 
 <style>
+/* ===== 基础重置 ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ===== 全局过渡效果 ===== */
+html,
+body,
+body *:not(.theme-toggle, .theme-toggle *, .no-transition, .no-transition *) {
+  transition: 
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ===== 文档结构 ===== */
+html {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* ===== 暗色模式 ===== */
+body.dark-mode {
+  background-color: #121212;
+  color: #f8f9fa;
+}
+
+body.dark-mode .main-content {
+  background-color: #1a1a1a;
+}
+
+/* ===== 应用容器 ===== */
 #app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-primary, #333);
-  background-color: var(--bg-primary, #f8f9fa);
-}
-
-#app.dark-mode {
-  --text-primary: #f0f0f0;
-  --bg-primary: #121212;
-  --button-bg: #333;
-  --button-text: #f0f0f0;
-  --button-hover: #444;
-}
-
-.main-content {
-  flex: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  width: 100%;
   position: relative;
 }
 
-/* 切换按钮样式 */
+/* ===== 主要内容区域 ===== */
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  background-color: inherit;
+}
+
+/* ===== 主题切换按钮 ===== */
 .theme-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 8px 12px;
-  background-color: var(--button-bg, #f0f0f0);
-  color: var(--button-text, #333);
+  padding: 10px 15px;
+  background-color: #ffffff;
+  color: #212529;
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* 确保最高层级 */
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 16px;
+  gap: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
 .theme-toggle:hover {
-  background-color: var(--button-hover, #e0e0e0);
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.theme-icon {
+  font-size: 1.2em;
 }
 
 .theme-text {
-  margin-left: 5px;
+  font-weight: 500;
 }
 
-/* 暗色模式下的其他元素样式 */
-.dark-mode .main-content {
-  background-color: var(--bg-secondary, #1e1e1e);
+/* 暗色模式下的按钮样式 */
+body.dark-mode .theme-toggle {
+  background-color: #2d3748;
+  color: #f8f9fa;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* 响应式调整 */
+body.dark-mode .theme-toggle:hover {
+  background-color: #4a5568;
+}
+
+/* ===== 响应式设计 ===== */
 @media (max-width: 768px) {
   .theme-toggle {
     top: 15px;
     right: 15px;
-    padding: 6px 10px;
-    font-size: 14px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
   
   .theme-text {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
   }
 }
 </style>

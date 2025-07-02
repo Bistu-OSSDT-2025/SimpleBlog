@@ -10,7 +10,7 @@
     <div class="container">
       <div class="content-wrapper">
         <main class="blog-posts">
-          <h2>最新文章</h2>
+          <h2 class="latest-articles-title">最新文章</h2>
           <div class="posts-grid">
             <article
               v-for="post in posts"
@@ -76,7 +76,7 @@ const mockPosts = [
       '深入了解 Vue 3 的 Composition API，学习如何使用 setup() 函数、reactive 和 ref 等核心概念...',
     date: '2025-07-01',
     category: 'Vue.js',
-    image: 'https://via.placeholder.com/400x200/007bff/ffffff?text=Vue3',
+    image: 'https://dummyimage.com/400x200/007bff/ffffff?text=Vue3',
     readTime: 8,
     views: 1250,
   },
@@ -86,7 +86,7 @@ const mockPosts = [
     excerpt: 'ES2024 带来了许多令人兴奋的新功能，包括新的数组方法、模式匹配等，让我们一起探索...',
     date: '2025-06-28',
     category: 'JavaScript',
-    image: 'https://via.placeholder.com/400x200/f39c12/ffffff?text=JavaScript',
+    image: 'https://dummyimage.com/400x200/f39c12/ffffff?text=JavaScript',
     readTime: 6,
     views: 980,
   },
@@ -96,7 +96,7 @@ const mockPosts = [
     excerpt: 'CSS Grid 是现代网页布局的强大工具，本文将详细介绍如何使用 Grid 创建复杂的布局...',
     date: '2025-06-25',
     category: 'CSS',
-    image: 'https://via.placeholder.com/400x200/e74c3c/ffffff?text=CSS+Grid',
+    image: 'https://dummyimage.com/400x200/e74c3c/ffffff?text=CSS+Grid',
     readTime: 12,
     views: 1456,
   },
@@ -106,7 +106,7 @@ const mockPosts = [
     excerpt: '提升 Node.js 应用性能的实用技巧，包括内存管理、异步处理优化等最佳实践...',
     date: '2025-06-22',
     category: 'Node.js',
-    image: 'https://via.placeholder.com/400x200/27ae60/ffffff?text=Node.js',
+    image: 'https://dummyimage.com/400x200/27ae60/ffffff?text=Node.js',
     readTime: 10,
     views: 875,
   },
@@ -116,7 +116,7 @@ const mockPosts = [
     excerpt: '深入探讨 TypeScript 的高级类型特性，包括条件类型、映射类型和模板字面量类型...',
     date: '2025-06-20',
     category: 'TypeScript',
-    image: 'https://via.placeholder.com/400x200/3498db/ffffff?text=TypeScript',
+    image: 'https://dummyimage.com/400x200/3498db/ffffff?text=TypeScript',
     readTime: 15,
     views: 1120,
   },
@@ -126,7 +126,7 @@ const mockPosts = [
     excerpt: '全面对比 React 和 Vue 在 2025 年的发展现状，帮助你选择最适合的前端框架...',
     date: '2025-06-18',
     category: '前端框架',
-    image: 'https://via.placeholder.com/400x200/9b59b6/ffffff?text=React+vs+Vue',
+    image: 'https://dummyimage.com/400x200/9b59b6/ffffff?text=React+vs+Vue',
     readTime: 9,
     views: 2100,
   },
@@ -196,10 +196,17 @@ const changePage = (page) => {
   align-items: start;
 }
 
-.blog-posts h2 {
+/* 最新文章标题样式 - 仅此项随昼夜模式变化 */
+.latest-articles-title {
   margin-bottom: 30px;
-  color: #333;
   font-size: 2rem;
+  transition: color 0.3s ease;
+  color: #333;
+}
+
+/* 暗色模式 - 白字 */
+body.dark-mode .latest-articles-title {
+  color: white;
 }
 
 .posts-grid {

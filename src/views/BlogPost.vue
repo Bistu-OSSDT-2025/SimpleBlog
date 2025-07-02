@@ -62,7 +62,7 @@ const mockPosts = [
     content: `<p>深入了解 Vue 3 的 Composition API，学习如何使用 setup() 函数、reactive 和 ref 等核心概念。</p><p>本文将通过示例演示如何在实际项目中应用 Composition API。</p>`,
     date: '2025-07-01',
     category: 'Vue.js',
-    image: 'https://via.placeholder.com/800x400/007bff/ffffff?text=Vue3',
+    image: 'https://dummyimage.com/800x400/007bff/ffffff?text=Vue3',
   },
   {
     id: 2,
@@ -70,7 +70,7 @@ const mockPosts = [
     content: `<p>ES2024 带来了许多令人兴奋的新功能，包括新的数组方法、模式匹配等。</p><p>让我们一起探索这些新特性如何提高开发效率。</p>`,
     date: '2025-06-28',
     category: 'JavaScript',
-    image: 'https://via.placeholder.com/800x400/f39c12/ffffff?text=JS',
+    image: 'https://dummyimage.com/800x400/f39c12/ffffff?text=JS',
   },
 ]
 
@@ -80,14 +80,14 @@ const mockComments = [
     author: '张三',
     text: '非常有价值的文章！',
     date: '2025-07-02',
-    avatar: 'https://via.placeholder.com/40x40/007bff/ffffff?text=张',
+    avatar: 'https://dummyimage.com/40x40/007bff/ffffff?text=张',
   },
   {
     id: 2,
     author: '李四',
     text: '请问有没有更多的示例代码？',
     date: '2025-07-02',
-    avatar: 'https://via.placeholder.com/40x40/28a745/ffffff?text=李',
+    avatar: 'https://dummyimage.com/40x40/28a745/ffffff?text=李',
   },
 ]
 
@@ -117,7 +117,7 @@ function submitComment() {
       author: '匿名',
       text: newComment.value,
       date: new Date().toISOString(),
-      avatar: 'https://via.placeholder.com/40x40/6c757d/ffffff?text=?',
+      avatar: 'https://dummyimage.com/40x40/6c757d/ffffff?text=?',
     })
     newComment.value = ''
   }

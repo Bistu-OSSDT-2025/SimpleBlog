@@ -7,6 +7,7 @@
 
       <div class="nav-menu" :class="{ active: isMenuOpen }">
         <router-link to="/" class="nav-link" @click="closeMenu">首页</router-link>
+        <router-link to="/editor" class="nav-link" @click="closeMenu">写文章</router-link>
         <router-link to="/about" class="nav-link" @click="closeMenu">关于</router-link>
       </div>
 
@@ -40,6 +41,7 @@ const closeMenu = () => {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
 }
 
 .nav-container {
