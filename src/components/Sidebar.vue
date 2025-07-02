@@ -149,21 +149,21 @@ const recentComments = ref([
     author: '张三',
     text: '这篇文章写得很详细，对我帮助很大！',
     date: '2025-07-02',
-    avatar: 'https://via.placeholder.com/40x40/007bff/ffffff?text=张',
+    avatar: 'https://dummyimage.com/40x40/007bff/ffffff?text=张',
   },
   {
     id: 2,
     author: '李四',
     text: '请问有没有更多的实例代码？',
     date: '2025-07-01',
-    avatar: 'https://via.placeholder.com/40x40/28a745/ffffff?text=李',
+    avatar: 'https://dummyimage.com/40x40/28a745/ffffff?text=李',
   },
   {
     id: 3,
     author: '王五',
     text: '感谢分享，学到了很多新知识。',
     date: '2025-06-30',
-    avatar: 'https://via.placeholder.com/40x40/dc3545/ffffff?text=王',
+    avatar: 'https://dummyimage.com/40x40/dc3545/ffffff?text=王',
   },
 ])
 
