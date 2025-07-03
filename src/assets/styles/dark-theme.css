@@ -144,13 +144,22 @@ body.dark-mode .nav-brand {
   color: var(--text-primary) !important;
 }
 
-body.dark-mode .nav-links a {
+body.dark-mode .nav-brand h2 {
+  color: var(--accent-blue) !important;
+}
+
+body.dark-mode .nav-link {
   color: var(--text-secondary) !important;
 }
 
-body.dark-mode .nav-links a:hover,
-body.dark-mode .nav-links a.router-link-active {
-  color: var(--accent-blue) !important;
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link.router-link-active {
+  color: white !important;
+  background-color: var(--accent-blue) !important;
+}
+
+body.dark-mode .bar {
+  background-color: var(--text-primary) !important;
 }
 
 /* ===== 页脚暗黑模式 ===== */
