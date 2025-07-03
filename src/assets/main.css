@@ -1,4 +1,5 @@
 @import './base.css';
+@import './styles/dark-theme.css';
 
 /* 移除默认的app样式，使用App.vue中的样式 */
 

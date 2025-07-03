@@ -175,3 +175,27 @@ npm run format
 - 邮箱：<contact@simpleblog.com>
 - GitHub：[SimpleBlog Repository](https://github.com/Bistu-OSSDT-2025/SimpleBlog)
 - 问题反馈：[Issues](https://github.com/Bistu-OSSDT-2025/SimpleBlog/issues)
+
+## 🌙 暗黑模式功能
+
+SimpleBlog 现在支持完整的暗黑模式功能！
+
+### 特性
+
+- 🎨 **智能主题检测** - 自动适配系统主题偏好
+- 💾 **用户偏好记忆** - 保存用户的主题选择
+- 🔄 **平滑过渡动画** - 优雅的主题切换效果
+- 📱 **响应式设计** - 完美适配所有设备
+- 🎯 **一键切换** - 右上角便捷的主题切换按钮
+
+### 使用方法
+
+1. 点击右上角的主题切换按钮 (🌙/☀️)
+2. 系统会自动记住您的选择
+3. 首次访问时会根据系统设置自动选择主题
+
+### 支持的组件
+
+所有组件都完美支持暗黑模式，包括导航栏、侧边栏、文章卡片、编辑器、评论区等。
+
+---

@@ -186,6 +186,12 @@ const getTagSize = (count) => {
   border-radius: 8px;
   padding: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+/* 暗色模式下的背景颜色 */
+body.dark-mode .sidebar {
+  background: rgb(33, 32, 32);
 }
 
 .sidebar-section {
@@ -202,6 +208,12 @@ const getTagSize = (count) => {
   color: #333;
   font-size: 1.1rem;
   font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* 暗色模式下的文字颜色 */
+body.dark-mode .sidebar-section h3 {
+  color: white;
 }
 
 /* 搜索框 */
