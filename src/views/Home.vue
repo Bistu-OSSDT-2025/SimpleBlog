@@ -10,7 +10,7 @@
     <div class="container">
       <div class="content-wrapper">
         <main class="blog-posts">
-          <h2>最新文章</h2>
+          <h2 class="latest-articles-title">最新文章</h2>
           <div class="posts-grid">
             <article
               v-for="post in posts"
@@ -133,10 +133,17 @@ const changePage = async (page) => {
   align-items: start;
 }
 
-.blog-posts h2 {
+/* 最新文章标题样式 - 仅此项随昼夜模式变化 */
+.latest-articles-title {
   margin-bottom: 30px;
-  color: #333;
   font-size: 2rem;
+  transition: color 0.3s ease;
+  color: #333;
+}
+
+/* 暗色模式 - 白字 */
+body.dark-mode .latest-articles-title {
+  color: white;
 }
 
 .posts-grid {
