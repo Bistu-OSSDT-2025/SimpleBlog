@@ -147,6 +147,16 @@ export async function getPost(id) {
   return post || null
 }
 
+export async function likePost(postId) {
+  const posts = getData(POSTS_KEY, defaultPosts)
+  const post = posts.find((p) => p.id === postId)
+  if (post) {
+    post.likes = (post.likes || 0) + 1
+    setData(POSTS_KEY, posts)
+  }
+  return post || null
+}
+
 export async function addPost(post) {
   const posts = getData(POSTS_KEY, defaultPosts)
   const newId = posts.length ? Math.max(...posts.map((p) => p.id)) + 1 : 1
@@ -155,6 +165,7 @@ export async function addPost(post) {
     date: new Date().toISOString().slice(0, 10),
     views: 0,
     readTime: Math.ceil(post.content?.length / 200) || 5, // Estimate read time
+    likes: 0,
     ...post,
   }
   // Generate default image if none provided
@@ -234,6 +245,7 @@ export async function getTags() {
 }
 
 export async function getArchives() {
+  // Add likes count to posts
   const posts = await getPosts()
   const archMap = {}
   posts.forEach((p) => {

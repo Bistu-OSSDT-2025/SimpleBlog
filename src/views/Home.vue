@@ -31,6 +31,7 @@
                 <div class="post-footer">
                   <span class="read-time">{{ post.readTime }} 分钟阅读</span>
                   <span class="post-views">{{ post.views }} 次阅读</span>
+                  <span class="post-likes">{{ post.likes }} 喜欢</span>
                 </div>
               </div>
             </article>

@@ -13,6 +13,12 @@
               <img :src="post.image" :alt="post.title" />
             </div>
             <div class="post-content" v-html="post.content"></div>
+            <div class="post-actions">
+              <button @click="handleLike" class="like-button">
+                <span class="like-icon">❤️</span>
+                <span class="like-count">{{ post.likes || 0 }}</span>
+              </button>
+            </div>
           </article>
 
           <section class="comments">
@@ -49,7 +55,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Sidebar from '../components/Sidebar.vue'
-import { getPost, getComments, addComment } from '../api.js'
+import { getPost, getComments, addComment, likePost } from '../api.js'
 
 const route = useRoute()
 const post = ref({})
@@ -69,6 +75,20 @@ function formatDate(dateString) {
     month: 'long',
     day: 'numeric',
   })
+}
+
+async function handleLike() {
+  if (post.value.id) {
+    try {
+      const updatedPost = await likePost(post.value.id)
+      post.value = {
+        ...post.value,
+        likes: updatedPost.likes
+      }
+    } catch (error) {
+      console.error('Like failed:', error)
+    }
+  }
 }
 
 function submitComment() {
@@ -128,6 +148,39 @@ function submitComment() {
 .post-content {
   line-height: 1.8;
   margin-bottom: 40px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: flex-start;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.like-button:hover {
+  background: #e67e22;
+}
+
+.like-icon {
+  font-size: 1.2rem;
+}
+
+.like-count {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .comments {
