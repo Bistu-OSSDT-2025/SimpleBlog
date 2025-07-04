@@ -59,10 +59,11 @@ const publish = async () => {
   }
   const postData = {
     title: postTitle.value,
-    excerpt: content.replace(/<[^>]*>/g, '').substring(0, 100) + '...',
+    excerpt: content.replace(/[#*`\[\]]/g, '').substring(0, 100) + '...',
     category: postCategory.value || '未分类',
     image: postImage.value,
-    content,
+    content, // 保存markdown内容
+    isMarkdown: true, // 标记为markdown格式
   }
   // 调用本地存储接口保存文章
   await addPost(postData)
